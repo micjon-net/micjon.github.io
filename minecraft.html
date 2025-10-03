@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>My Minecraft Server</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body { background: #f8fafc; color: #0f172a; transition: background 0.3s, color 0.3s; }
+    .hero { background: linear-gradient(90deg, #0ea5a4 0%, #7c3aed 100%); color: white; }
+    .card { border: none; box-shadow: 0 6px 18px rgba(2,6,23,0.06); transition: background 0.3s, color 0.3s; }
+    footer { font-size: 0.9rem; color: #475569; transition: color 0.3s; }
+
+    /* Dark mode styles */
+    body.dark-mode { background: #0f172a; color: #f1f5f9; }
+    body.dark-mode .navbar { background: #1e293b !important; }
+    body.dark-mode .navbar .nav-link,
+    body.dark-mode .navbar-brand { color: #f1f5f9 !important; }
+    body.dark-mode .card { background: #1e293b; color: #f1f5f9; }
+    body.dark-mode footer { color: #94a3b8; }
+  </style>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom">
+  <div class="container">
+    <a class="navbar-brand fw-bold" href="#">Terra4</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navmenu">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navmenu">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link" href="/index.html">micjon.net</a></li>
+        <li class="nav-item"><a class="nav-link" href="#rules">Rules</a></li>
+        <li class="nav-item"><a class="nav-link" href="#info">Info</a></li>
+        <li class="nav-item"><a class="nav-link" href="#join">How to Join</a></li>
+      </ul>
+      <button id="theme-toggle" class="btn btn-outline-secondary ms-3">🌙</button>
+    </div>
+  </div>
+</nav>
+
+<header class="hero py-5">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-md-8">
+        <h1 class="display-6 fw-bold">Welcome to Terra4</h1>
+        <p class="lead">A casual Bedrock and Java compatible Minecraft server. Be kind, have fun, and read the rules before you play.</p>
+      </div>
+      <div class="col-md-4 text-md-end mt-4 mt-md-0">
+        <div class="card p-3 bg-white text-dark">
+          <div class="card-body">
+            <h5 class="card-title mb-1">Server IP</h5>
+            <p class="card-text fs-4 fw-semibold">mc.micjon.net</p>
+            <p class="mb-0 text-muted">Version: 1.21.9</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main class="container my-5">
+  <div class="row g-4">
+    <div class="col-lg-8">
+      <section id="rules">
+        <div class="card p-4">
+          <h3 class="mb-3">Server Rules</h3>
+          <ol>
+            <li>No griefing. Respect other players' builds.</li>
+            <li>No stealing or raiding without permission.</li>
+            <li>No hateful or harassing language.</li>
+            <li>No cheating or using exploits (x-ray, duping, hacked clients).</li>
+            <li>Have fun and be respectful to staff and players.</li>
+            <li>You will be banned with no more than 1 warning for cheating or griefing.</li>
+          </ol>
+        </div>
+      </section>
+
+      <section id="info" class="mt-4">
+        <div class="card p-4">
+          <h4>About</h4>
+          <p class="mb-0">This server is meant for casual play. There is not heavy server managment
+            so players who do not respect others' builds will quickly get banned.
+          </p>
+        </div>
+      </section>
+    </div>
+
+    <aside class="col-lg-4">
+      <div class="card p-3 mb-3" id="join">
+
+        <h5>Joining on Java</h5>
+        <p class="mb-0">Open Minecraft -> Multiplayer -> Add Server -> Use IP:  <span>mc.micjon.net</span></p>
+        <br></br>
+        <h5>Joining on Bedrock</h5>
+        <p class="mb-0">Open Minecraft -> Multiplayer -> Add Server -> Use IP:  <span>mc.micjon.net</span> and port 19009</p>
+
+        <br></br>
+
+        <h6>Server is whitelisted for security, if you want to join for the first time join the
+             <a href="https://discord.gg/F6DG4agd78">discord</a> and 
+            ping @mccakeah
+        </h6>
+
+      </div>
+
+      
+
+      <div class="card p-3">
+        <h6>Quick Links</h6>
+        <ul class="list-unstyled mb-0">
+          <li>Discord: <a href="https://discord.gg/F6DG4agd78">Terra Discord</a></li>
+          <li>Dynmap: <em>Coming soon...</em></li>
+        </ul>
+      </div>
+    </aside>
+  </div>
+</main>
+
+<footer class="py-4">
+  <div class="container d-flex justify-content-between">
+    <div>© <span id="year"></span> Terra4</div>
+    <div><small class="text-muted">Made with ❤️ using Bootstrap</small></div>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  const toggleBtn = document.getElementById('theme-toggle');
+  const body = document.body;
+
+  // Load saved theme
+  if (localStorage.getItem('theme') === 'dark') {
+    body.classList.add('dark-mode');
+    toggleBtn.textContent = '☀️';
+  }
+
+  toggleBtn.addEventListener('click', () => {
+    body.classList.toggle('dark-mode');
+    const isDark = body.classList.contains('dark-mode');
+    toggleBtn.textContent = isDark ? '☀️' : '🌙';
+    localStorage.setItem('theme', isDark ? 'dark' : 'light');
+  });
+</script>
+
+</body>
+</html>
