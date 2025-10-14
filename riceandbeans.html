@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Recipe Template</title>
+    <link rel="stylesheet" href="recipe.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-dark">
+    <header class="header container py-4">
+        <div class="d-flex flex-wrap align-items-center justify-content-between">
+            <a href="/index.html"><img src="/images/logo.webp" alt="Logo" style="height:48px;" class="me-3"></a>
+            <h1 class="recipe-title mb-0">One-pot Rice and Beans</h1>
+            <div class="multiplier ms-3">
+                <label for="serving-size" class="form-label mb-0 me-2">Scale:</label>
+                <select id="serving-size" class="form-select d-inline-block w-auto">
+                    <option value="1">1×</option>
+                    <option value="2">2×</option>
+                    <option value="3">3×</option>
+                    <option value="4">4×</option>
+                    <option value="5">5×</option>
+                </select>
+            </div>
+        </div>
+    </header>
+
+    
+
+    <section class="ingredients container mb-4">
+        <h2 class="h4">Ingredients</h2>
+        <ul class="list-group">
+            <li class="list-group-item" data-amount="2">2 tablespoons olive oil</li>
+            <li class="list-group-item" data-amount="1">1 yellow onion(s)</li>
+            <li class="list-group-item" data-amount="1.75">1.75 cups vegetable stock or water</li>
+            <li class="list-group-item" data-amount="1">1 teaspoon salt</li>
+            <li class="list-group-item" data-amount="1">1 cup(s) long-grain rice</li>
+            <li class="list-group-item" data-amount="1">1 (15.5-ounce) can(s) black or pinto beans</li>
+        </ul>
+    </section>
+
+    <section class="instructions container mb-4">
+        <h2 class="h4">Instructions</h2>
+        <ul class="list-group list-group-numbered">
+            <li class="list-group-item">In a large sauce pan warm the olive oil over medium heat. 
+                Add onion and saute until transucent, about 3 minutes. Add the stock, cover and bring to a boil.</li>
+            <li class="list-group-item">Add the salt, rice and beans (including the liquid). Stir just to combine, then cover.</li>
+            <li class="list-group-item">Turn the heat down as low as it will go, then let simmer, undisturbed, for 18 to 20 minutes.
+                Remove from heat and let set for 4 minutes. Fluff with a fork and serve.</li>
+            <li class="list-group-item">Season to taste with salt and pepper, then garnish with lime or cilantro as you wish.</li>
+        </ul>
+    </section>
+
+    <footer class="footer bg-dark text-white text-center py-3 mt-5">
+        <p>Recipe from NYT Cooking</p>
+        <p class="mb-0">© 2025 micjon recipes</p>
+    </footer>
+
+    <script>
+        const select = document.getElementById('serving-size');
+        const ingredients = document.querySelectorAll('.ingredients li');
+
+        function updateIngredients(multiplier) {
+            ingredients.forEach(item => {
+                const baseAmount = parseFloat(item.getAttribute('data-amount'));
+                const unit = item.getAttribute('data-unit');
+                // Get the original ingredient description (after amount and unit)
+                let rest;
+                if (unit) {
+                    rest = item.textContent.split(' ').slice(2).join(' ');
+                } else {
+                    rest = item.textContent.split(' ').slice(1).join(' ');
+                }
+                const newAmount = (baseAmount * multiplier).toFixed(2).replace(/\.00$/, '');
+                if (unit) {
+                    item.textContent = `${newAmount} ${unit} ${rest}`;
+                } else {
+                    item.textContent = `${newAmount} ${rest}`;
+                }
+            });
+        }
+
+        select.addEventListener('change', e => {
+            updateIngredients(parseFloat(e.target.value));
+        });
+    </script>
+
+        select.addEventListener('change', e => {
+            updateIngredients(parseFloat(e.target.value));
+        });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
